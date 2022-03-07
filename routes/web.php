@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return ('Homepage');
+});
+
+Route::get('/product', function () {
+    return ('Liste des produits');
+});
+
+Route::get('/cart}', function () {
+    return ('Panier');
+});
+
+Route::get('/product/{id}', function (int $id) {
+       return ('Fiche du produit  ' .$id);
 });
