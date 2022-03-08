@@ -8,14 +8,11 @@ class ProductController extends Controller
 {
     public function catalog()
     {
-        return 'Liste des produits';
+        return view('product-list');
     }
 
     public function item(int $id)
     {
-        return 'Fiche du produit' .$id;
+        return view('product-details')->with('id',$id); 
     }
-
-
-
 }

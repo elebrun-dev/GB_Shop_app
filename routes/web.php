@@ -20,7 +20,7 @@ use App\Http\Controllers\CartController;
 //     return view('welcome');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']) ->name('home');
    
 Route::get('/product',[ProductController::class, 'catalog']);
 
