@@ -16,14 +16,11 @@ use App\Http\Controllers\CartController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/', [HomeController::class, 'index']) ->name('home');
    
-Route::get('/product',[ProductController::class, 'catalog']);
+Route::get('/catalog',[ProductController::class, 'displayCatalog'])->name('catalog');
 
-Route::get('/product/{id}', [ProductController::class, 'item']);
+Route::get('/product/{id}', [ProductController::class, 'item'])->name('item');
 
-Route::get('/cart', [CartController::class, 'displayCart']);
+Route::get('/cart', [CartController::class, 'displayCart'])->name('cart');
