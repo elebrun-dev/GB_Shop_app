@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,6 @@ use App\Http\Controllers\CartController;
 |
 */
 
-
 Route::get('/', [HomeController::class, 'index']) ->name('home');
    
 Route::get('/catalog',[ProductController::class, 'displayCatalog'])->name('catalog');
@@ -24,3 +24,6 @@ Route::get('/catalog',[ProductController::class, 'displayCatalog'])->name('catal
 Route::get('/product/{id}', [ProductController::class, 'item'])->name('item');
 
 Route::get('/cart', [CartController::class, 'displayCart'])->name('cart');
+
+Route::get('/contact', [ContactController::class, 'displayContactForm'])->name('contact');
+Route::post('/contact', [ContactController::class, 'storeResultsContactForm'])->name('results');
