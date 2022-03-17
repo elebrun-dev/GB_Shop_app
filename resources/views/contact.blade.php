@@ -1,48 +1,60 @@
-@extends('template')
+@extends('layout.template')
 
 @section('content')
 
-<section class="form">
+<section class="container form">
       <h1>Contactez-nous!</h1>
      
         <form class="row g-3" method="POST" action="{{route('results')}}">
           @csrf
           <div class="col-md-6">
-            <label for="inputName" class="form-label">Nom</label>
+            <label for="lastname" class="form-label">Nom</label>
             <input
               type="text"
-              class="form-control"
-              name="nom"
-              id="inputName"
-              required
+              class="form-control @error('lastname') is-invalid @enderror" 
+              name="lastname"
+              id="lastname"
+              value="{{ old('lastname') }}"
+              {{-- required --}}
             />
+            @error('lastname')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
           <div class="col-md-6">
-            <label for="inputLastname" class="form-label">Prénom</label>
+            <label for="firstname" class="form-label">Prénom</label>
             <input
               type="text"
-              class="form-control"
-              id="inputLastname"
-              name="prenom"
-              required
+              class="form-control @error('firstname') is-invalid @enderror"
+              id="firstname"
+              name="firstname"
+              value="{{ old('firstname') }}"
+              {{-- required --}}
             />
+            @error('firstname')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
           <div class="col-md-6">
-            <label for="inputEmail" class="form-label">Email</label>
+            <label for="email" class="form-label">Email</label>
             <input
               type="email"
-              class="form-control"
-              id="inputEmail"
+              class="form-control @error('email') is-invalid @enderror"
+              id="email"
               name="email"
               placeholder="jean.jacque@laposte.net"
-              required
+              value="{{ old('email') }}"
+              {{-- required --}}
             />
+            @error('email')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
           <div class="col-md-6">
             <label for="inputChoice" class="form-label"
               >Raison de votre message</label
             >
-            <select id="inputChoice" class="form-select" name="raison" required>
+            <select id="inputChoice" class="form-select" name="raison" >
               <option value="">Choisissez parmi la liste</option>
               <option value="sav">SAV</option>
               <option value="job">Job</option>
@@ -51,61 +63,28 @@
             </select>
           </div>
           <div class="col-12">
-            <label for="inputMessage" class="form-label">Message</label>
+            <label for="message" class="form-label">Message</label>
             <textarea
               name="message"
-              class="form-control text1"
-              id="inputMessage"
-              placeholder="Tapez votre message ici ..."
-              required
-            ></textarea>
+              class="form-control @error('message') is-invalid @enderror"
+              id="message"
+              {{-- required --}}
+              placeholder="Tapez votre message ici ...">{{ old('message') }}
+            </textarea>
+            @error('message')
+              <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
           </div>
-          <!-- Button trigger modal CHANGER ICI POUR LE TYPE DE BOUTTON-->
+          
           <div class="col-lg-6">
             <button
               type="submit"
               class="btn btn-primary"
-              {{-- data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop" --}}
-            >
+             >
               Envoyer
             </button>
           </div>
-
-          <!-- Modal -->
-          {{-- <div
-            class="modal fade"
-            id="staticBackdrop"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="staticBackdropLabel">
-                    Votre message a bien été envoyé !
-                  </h5>
-                  
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="submit"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Fermer
-                  </button>
-                  
-                </div>
-              </div>
-            </div>
-          </div> --}}
         </form>
-           
       </section>
-   
       @endsection
    

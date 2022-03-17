@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layout.template')
 
 @section('title', "Fiche produit")
 
@@ -20,12 +20,12 @@
 
         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{$products->discount}}% </div>
 
-         <img class="card-img-top" src={{$products->image}} alt="Image Produit" width=50%/>
+         <img class="card-img-top" src="{{$products->image}}" alt="Image Produit" width=50%/>
 
          <div class="card-body p-4">
             <div class="text-center">
             <h5 class="fw-bolder"> {{$products->name}}</h5>
-            <p class="fw-bolder">Catégorie : {{$products->cat_name}}</p>
+            <p class="fw-bolder">Catégorie : {{$products->category->name}}</p>
             <br>
             <span class="fw-bold" style="color:red">{{$products->price}} TTC </span>
             <p>{{$products->description}} </p>

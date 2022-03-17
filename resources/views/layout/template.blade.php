@@ -49,10 +49,10 @@
                             <a class="nav-link" href={{route('home')}}>Mon compte</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={{route('cart')}}>Mon panier</a>
+                            <a class="nav-link" href={{route('cart.show')}}>Mon panier</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={{route('home')}}>Espace Admin</a>
+                            <a class="nav-link" href={{route('back')}}>Espace Admin</a>
                         </li>
                     </ul>
                 </div>

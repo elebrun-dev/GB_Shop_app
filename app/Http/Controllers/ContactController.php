@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function displayContactForm()
+    public function create()
     {
         return view('contact');
     }
 
 
-    public function storeResultsContactForm(Request $request)
+    public function store(ContactRequest $request)
     {
         $data = [
             'datas' => [
@@ -24,7 +25,7 @@ class ContactController extends Controller
             ]
             ];
 
-        return view('contact.result', $data);
+        return view('contactresult', $data);
     }
 
 

@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layout.template')
 
 @section('title', "Catalogue Games Bond")
 
@@ -17,24 +17,36 @@
     </div>
 </section>
 
+    {{-- <label for="category">Trier par catégorie:</label>
+        <select name="category" id="category"  onchange="window.location.href = this.value">
+            
+                <option value="{{route('category')}}" @unless($cat) selected @endunless>Toutes catégories </option>
+               @foreach($category as $cat)
+               <option value="{{route('category')}}">{{ $cat->name }}</option>
+        @endforeach
+            </select>
+    <input type="submit" value="Valider"> --}}
+
 
 <section id="catalog" class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
 @foreach ($products as $product) 
+
+{{-- @dd($products) --}}
       
         <div class="col mb-5">
         <div class="card h-100 border border-dark">
 
         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">{{$product->discount}}% </div>
 
-         <img class="card-img-top" src={{$product->image}} alt="Image Produit"/>
+         <img class="card-img-top" src="{{$product->image}}" alt="Image Produit"/>
 
          <div class="card-body p-4">
             <div class="text-center">
-            <h5 class="fw-bolder"> {{$product->name}}</h5>
-            <p class="fw-bolder">Catégorie : {{$product->cat_name}}</p>
+            <h5 class="fw-bolder"> {{$product->id ."  ". $product->name}}</h5>
+            <p class="fw-bolder">Catégorie : {{$product->category->name}}</p>
             <span class="text-muted"> {{$product->price}} HT </span>
             <br>
             <span class="text-decoration-line-through">{{$product->price}} TTC </span>
@@ -44,17 +56,19 @@
 
          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-                <a class="btn btn-outline-dark mt-auto" href={{route('item',$product->id)}} >Plus d'infos</a>
+            <a class="btn btn-outline-dark mt-auto" href={{route('item',$product->id)}} >Plus d'infos</a>
             </div>
         </div>
         
          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-            <form action="{{route('cart')}}" method="POST">
-                <input type="hidden" value={{$product->id}} name="[{{$product->id}}][product_id]" id="product_id">
-                <input type="hidden" value={{$product->name}} name="[{{$product->name}}][name]" id="name">
+            <form action="{{url('/cart/add/'.$product->id )}}" method="post">
+                @csrf
+                <input type="hidden" value="{{$product->id}}" name="id" id="id">
+                <input type="hidden" value="{{$product->name}}" name="name" id="name">
+                <input type="hidden" value="{{$product->price}}" name="price" id="price">
                 <label for="quantity">Quantité</label>
-                <input type="number" value="0" name="[{{$product->id}}][quantity]" id="quantity" style="width:40px;margin-bottom:10px">
+                <input type="number" value="0" name="quantity" id="quantity" style="width:40px;margin-bottom:10px">
                 <button type="submit" class="btn btn-primary mt-auto" style="color:white;border-radius:5px">Ajouter au panier</button>
                 <br>
             </form>

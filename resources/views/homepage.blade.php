@@ -1,7 +1,6 @@
-@extends('template')
+@extends('layout.template')
 
-@section('title', "Games Bond, spécialiste des jeux vidéos")
-
+@section('title',"Games Bond, spécialiste des jeux vidéos")
 
 @section('content')
 
