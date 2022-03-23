@@ -9,13 +9,13 @@ use App\Models\Category;
 
 class ProductController extends Controller
 {
-    public function displayCatalog()
+    public function showCatalog()
     {     
         $products = Product::all();
         return view('catalog', ['products'=> $products]);
     }
 
-    public function displayCatalogByCategory($cat)
+    public function showCatalogByCategory($cat)
     {     
         $category = Category::all();
         $products = Product::where('category_id',$cat)->first();
@@ -23,9 +23,9 @@ class ProductController extends Controller
     }
 
 
-    public function displayItem(int $id)
+    public function showOneItem(int $product)
     {   
-        $products = Product::where('id',$id)->first();
+        $products = Product::where('id',$product)->first();
         return view('productdetails',['products'=> $products]); 
     }
 }

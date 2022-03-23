@@ -32,12 +32,16 @@
     
             <div class="col-6 form-group mb-3">
                 <label for="price">Prix (€)</label>
-                <input value="{{$product->price}}" type="number" class="form-control" id="price" name="price">
-            </div>
+                <input value="{{$product->price}}" type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price">
+                @error('price')
+                <div class="invalid-feedback">{{ $message }}</div>
+              @enderror
+              </div>
             <div class="col-6 form-group mb-3">
               <label for="discount">Réduction </label>
               <input value="{{$product->discount}}" type="number" class="form-control" id="discount" name="discount">
-          </div>
+             
+            </div>
           <div class="col-6 form-group mb-3">
               <label for="quantity">Stock</label>
               <input value="{{$product->quantity}}" type="number" class="form-control" id="quantity" name="quantity">

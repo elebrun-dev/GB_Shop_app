@@ -40,9 +40,9 @@
     @foreach ($orders->products as $product)
                 <tr>
                 <td >{{$product->name}}</td>
-                <td>{{$product->quantity}}</td>
+                <td>{{$product->pivot->quantity}}</td>
                 <td>{{$product->price}}</td>
-                <td>{{$product->quantity * $product->price}}</td>
+                <td>{{$product->pivot->quantity * $product->price}}</td>
                 </tr>
                 @endforeach
     </tr>

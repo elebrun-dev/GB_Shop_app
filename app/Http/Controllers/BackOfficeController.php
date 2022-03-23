@@ -43,25 +43,23 @@ class BackOfficeController extends Controller
     }
 
 
-
    //Display form to create new product
 
     public function create()
     {
-        $data = category::all();
+        $data = Category::all();
         return view('backoffice.createproducts',compact('data'));
     }
 
     //Save new product on the database
     
-
     public function store(ProductRequest $request)
     {
-        $product = new product([
+        $product = new Product([
             'name' => $request->get('name'),
             'price' => $request->get('price'),
             'discount' => $request->get('discount'),
-            'description' => $request->get('description'),
+            'description' => $request->get('description'), 
             'quantity' => $request->get('quantity'),
             'weight' => $request->get('weight'),
             'image' => $request->get('image'),
@@ -78,17 +76,16 @@ class BackOfficeController extends Controller
      
     public function edit($id)
     {
-        $product = product::findOrFail($id);
+        $product = Product::findOrFail($id);
         return view('backoffice.editproducts', compact('product'));
     }
 
-    /**
-     * Save product modification
-     */
-    public function update(request $request,$id)
+    //Save product modification
+    
+    public function update(Productrequest $request,$id)
     {
 
-        $product = product::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->name = $request->get('name');
         $product->description = $request->get('description');
         $product->category_id = $request->get('category');
@@ -106,7 +103,7 @@ class BackOfficeController extends Controller
      
     public function destroy($id)
     {
-        $product = product::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->delete();
         return redirect('/backoffice/catalog')->with('success', 'Produit supprimé avec succès');
     }

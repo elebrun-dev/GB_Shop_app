@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BackOfficeController;
+use App\Http\Controllers\API\ProductController as APIProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +19,33 @@ use App\Http\Controllers\BackOfficeController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::apiResource('api/products', APIProductController::class); 
+
 Route::get('/', [HomeController::class, 'index']) ->name('home');
    
 Route::controller(ProductController::class)->group(function () {
 
-    Route::get('/catalog','displayCatalog')->name('catalog');
-    Route::get('/catalog/{cat}','displayCatalogByCategory')->name('category');
-    Route::get('/product/{id}', 'displayItem')->name('item');    
+    Route::get('/catalog','showCatalog')->name('catalog');
+    Route::get('/catalog/{cat}','showCatalogByCategory')->name('category');
+    Route::get('/product/{id}', 'showOneItem')->name('item');    
 });
 
 
 Route::controller(CartController::class)->group(function () {
 
-    Route::get('/cart','displayCart')->name('cart.show');
-    Route::post('/cart/add/{product}', 'create')->name('cart.add');
-    Route::get('/cart/edit/{product}', 'edit')->name('cart.edit');
-    Route::delete('/cart/remove/{product}', 'destroy')->name('cart.remove');
+    Route::get('/cart','show')->name('cart.show');
+    Route::post('/cart/add/{product}', 'add')->name('cart.add');
+    Route::delete('/cart/remove/{product}', 'remove')->name('cart.remove');
     Route::get('cart/empty', 'empty')->name('cart.empty');
 
 });
@@ -44,7 +56,7 @@ Route::controller(ContactController::class)->group(function () {
     Route::post('/contact','store')->name('results');
 });
 
-Route::controller(BackOfficeController::class)->group(function () {
+Route::controller(BackOfficeController::class)->middleware(['auth'])->group(function () {
 
     Route::get('/backoffice', 'index')->name('back');
     Route::get('/backoffice/catalog', 'catalog')->name('backcatalog');

@@ -46,14 +46,26 @@
                             <a class="nav-link" href="{{route('contact')}}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href={{route('home')}}>Mon compte</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href={{route('cart.show')}}>Mon panier</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href={{route('back')}}>Espace Admin</a>
                         </li>
+                        <li class="nav-item">
+                          @if (Route::has('login'))
+                                   @auth
+                                  <a href="{{ url('/dashboard') }}" class=" nav-link">Mon compte</a>
+                              @else
+                                  <a href="{{ route('login') }}" class="nav-link">Se connecter</a>
+                                </li>
+                                <li class="nav-item"></li>
+                                  @if (Route::has('register'))
+                                      <a href="{{ route('register') }}" class="nav-link">Créer un compte</a>
+                                  @endif
+                                </li>
+                              @endauth
+                          </div>
+                      @endif
                     </ul>
                 </div>
             </div>

@@ -4,7 +4,9 @@
 
 @section('content')
 
+    
 <div class="home container-fluid">
+ 
     <div class="accroche">
         <div class="clavier">
             <img id="clavier" src="/images/clavier.png" alt="photo_clavier" />

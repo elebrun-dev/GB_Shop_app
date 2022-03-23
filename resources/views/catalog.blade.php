@@ -45,42 +45,24 @@
 
          <div class="card-body p-4">
             <div class="text-center">
-            <h5 class="fw-bolder"> {{$product->id ."  ". $product->name}}</h5>
+            <h5 class="fw-bolder"> {{$product->name}}</h5>
             <p class="fw-bolder">Catégorie : {{$product->category->name}}</p>
-            <span class="text-muted"> {{$product->price}} HT </span>
+            <span class="text-muted"> {{number_format($product->price/1.2,2,',')}} HT </span>
             <br>
             <span class="text-decoration-line-through">{{$product->price}} TTC </span>
-            <span class="fw-bold" style="color:red">{{$product->price}} TTC </span>
+            <span class="fw-bold" style="color:red">{{$product->price - ($product->price * $product->discount)/100 }} TTC </span>
             </div>
         </div>
 
          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
-            <a class="btn btn-outline-dark mt-auto" href={{route('item',$product->id)}} >Plus d'infos</a>
-            </div>
-        </div>
-        
-         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-            <form action="{{url('/cart/add/'.$product->id )}}" method="post">
-                @csrf
-                <input type="hidden" value="{{$product->id}}" name="id" id="id">
-                <input type="hidden" value="{{$product->name}}" name="name" id="name">
-                <input type="hidden" value="{{$product->price}}" name="price" id="price">
-                <label for="quantity">Quantité</label>
-                <input type="number" value="0" name="quantity" id="quantity" style="width:40px;margin-bottom:10px">
-                <button type="submit" class="btn btn-primary mt-auto" style="color:white;border-radius:5px">Ajouter au panier</button>
-                <br>
-            </form>
+            <a class="btn btn-primary mt-auto" href={{route('item',$product->id)}} >Acheter</a>
             </div>
         </div>
     </div>
 </div>
         @endforeach
-    
     </div>
     </div>
     </section>
-
-
 @endsection

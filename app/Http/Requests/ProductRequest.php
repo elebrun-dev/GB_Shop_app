@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'bail|required|between:5,20|alpha',
-            'price' => 'bail|required|between:0,1000|numeric',
+            'price' => 'bail|required|gt:0|numeric',
         ];
     }
 }
