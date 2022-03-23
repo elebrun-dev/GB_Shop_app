@@ -44,7 +44,7 @@ Route::controller(ProductController::class)->group(function () {
 Route::controller(CartController::class)->group(function () {
 
     Route::get('/cart','show')->name('cart.show');
-    Route::post('/cart/add/{product}', 'add')->name('cart.add');
+    Route::post('/cart/add/{product}', 'show')->name('cart.add');
     Route::delete('/cart/remove/{product}', 'remove')->name('cart.remove');
     Route::get('cart/empty', 'empty')->name('cart.empty');
 

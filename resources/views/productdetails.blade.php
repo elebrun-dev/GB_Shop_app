@@ -37,6 +37,8 @@
             <form action="{{url('/cart/add/'.$products->id )}}" method="post">
                 @csrf
                 <input type="hidden" value="{{$products->id}}" name="id" id="id">
+                <input type="hidden" value="{{$products->name}}" name="name" id="name">
+                <input type="hidden" value="{{$products->price}}" name="price" id="price">
                 <label for="quantity">Quantité</label>
                 <input  type="number" value="0" placeholder="Quantité?" name="quantity" id="quantity" style="width:40px;margin-bottom:10px">
                 <button type="submit" class="btn btn-primary mt-auto" style="color:white;border-radius:5px">Ajouter au panier</button>
