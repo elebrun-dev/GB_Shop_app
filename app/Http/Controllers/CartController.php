@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\CartInterfaceRepository;
-use App\Models\product;
+use App\Models\Product;
 use Illuminate\Contracts\Session\Session;
 
 class CartController extends Controller
@@ -17,14 +17,14 @@ class CartController extends Controller
     	$this->cart = $cart;
     }
 
-
     public function show(Request $request)
     {
-        //$cart=session()->get('cart');
+        $cart=session()->get('cart');
         
         // $data = session()->get('cart');
-
-    $product_details = [
+//foreach($cart as $value)
+    
+$product_details = [
         'id' => $request->input('id'),
         'name' => $request->input('name'),
         'quantity' => $request->input('quantity'),

@@ -21,9 +21,9 @@ class CartSessionRepository implements CartInterfaceRepository  {
 		// Les informations du produit à ajouter
 		$product_details = [
             'id' => $product->id,
-			// 'name' => $product->name,
-			// 'price' => $product->price,
-            // 'image' => $product->image,
+			'name' => $product->name,
+			'price' => $product->price,
+            'image' => $product->image,
 			'quantity' => $quantity
 		];
 		
